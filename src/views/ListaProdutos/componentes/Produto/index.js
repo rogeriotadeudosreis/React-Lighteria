@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export const Item = ({imagem, titulo}) => {
+export const Item = ({imagem, titulo, preco}) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.containerItem} onPress={() => navigation.push('DetalhesProduto')}>
       <Image source={imagem} style={styles.imagem} resizeMode="contain" />
       <Text style={styles.texto}>{titulo}</Text>
-    </View>
+      <Text style={styles.texto}>{preco}</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -14,7 +17,7 @@ const styles = StyleSheet.create({
   imagem: {
     height: 84,
   },
-  container: {
+  containerItem: {
     height: 168,
     backgroundColor: '#fff',
     borderRadius: 10,
